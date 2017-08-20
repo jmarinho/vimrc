@@ -15,7 +15,7 @@ let g:NERDTreeDirArrowCollapsible = 'v'
 let g:airline#extensions#tabline#enabled = 1
 
 "get CtrlP to show the open buffer list
-nmap <C-c> :CtrlPBuffer <CR>
+nmap <C-v> :CtrlPBuffer <CR>
 
 nmap <C-f> :NERDTreeFind <CR>
 
@@ -40,6 +40,7 @@ hi Colorcolumn ctermbg=cyan
 
 "set tab as 4 spaces"
 set tabstop=4
+let &l:shiftwidth=&tabstop
 set expandtab
 
 "highlight all search pattern matches
