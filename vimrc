@@ -71,6 +71,10 @@ command! -nargs=1 Gem5Build AsyncRun scons build/ARM/gem5.<args> -j4 EXTRAS=../g
 set wildignore+=/arm/projectscratch/pd/pj00617/users/josmar02/gem5/build
 set wildignore+=/arm/projectscratch/pd/pj00617/users/josmar02/build
 
+"disable bells
+set noeb
+set vb t_vb=
+
 "check if this is a vimdiff, if so enable setlist to be able to see tabs and line ends"
 if &diff
    set list
