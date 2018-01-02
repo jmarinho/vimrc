@@ -75,6 +75,12 @@ set wildignore+=/arm/projectscratch/pd/pj00617/users/josmar02/build
 set noeb
 set vb t_vb=
 
+"gvim resets the visual bell at times when initializing the gui"
+"Let us make sure the visual bell is off"
+if has("gui_running")
+    autocmd GUIEnter * set vb t_vb=
+endif
+
 "check if this is a vimdiff, if so enable setlist to be able to see tabs and line ends"
 if &diff
    set list
