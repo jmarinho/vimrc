@@ -65,6 +65,8 @@ set cst
 command! -nargs=1 CppGrep AsyncRun grep -n -R --include \*.hh --include \*.h --include \*.cc --include \*.c --include \*.cpp --include \*.hpp <args> 
 command! -nargs=1 PyGrep AsyncRun grep -n -R --include \*.py --include \*.pyc <args> 
 
+command! -nargs=1 FindString AsyncRun grep <args> . -n -R -I
+
 command! -nargs=1 Gem5Build AsyncRun scons build/ARM/gem5.<args> -j4 EXTRAS=../gem5-obj 
 
 set wildignore+=/arm/projectscratch/pd/pj00617/users/josmar02/gem5/build
