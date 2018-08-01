@@ -14,6 +14,9 @@ let g:NERDTreeDirArrowCollapsible = 'v'
 
 let g:airline#extensions#tabline#enabled = 1
 
+" force ctrlp to parse all files - this was required for the kernel
+let g:ctrlp_max_files=0
+
 "get CtrlP to show the open buffer list
 nmap <C-c> :CtrlPBuffer <CR>
 
