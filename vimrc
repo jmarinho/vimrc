@@ -2,7 +2,7 @@
 execute  pathogen#infect()
 
 "since ConqueGDB has some issues with cshell
-set shell=/bin/sh
+set shell=/bin/bash
 
 " default color scheme 
 colorscheme torte 
@@ -14,8 +14,12 @@ let g:NERDTreeDirArrowCollapsible = 'v'
 
 let g:airline#extensions#tabline#enabled = 1
 
+" force ctrlp to parse all files - this was required for the kernel
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=50
+
 "get CtrlP to show the open buffer list
-nmap <C-v> :CtrlPBuffer <CR>
+nmap <C-c> :CtrlPBuffer <CR>
 
 nmap <C-f> :NERDTreeFind <CR>
 
@@ -40,7 +44,6 @@ hi Colorcolumn ctermbg=cyan
 
 "set tab as 4 spaces"
 set tabstop=4
-let &l:shiftwidth=&tabstop
 set expandtab
 
 "highlight all search pattern matches
@@ -56,6 +59,9 @@ nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+" update cscope database"
+command! UpdateCscope AsyncRun find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files && cscope -b -i cscope.files -f cscope.out
+
 "use quickfix as outoput for cscope
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
@@ -66,20 +72,12 @@ set cst
 command! -nargs=1 CppGrep AsyncRun grep -n -R --include \*.hh --include \*.h --include \*.cc --include \*.c --include \*.cpp --include \*.hpp <args> 
 command! -nargs=1 PyGrep AsyncRun grep -n -R --include \*.py --include \*.pyc <args> 
 
+command! -nargs=1 FindString AsyncRun grep <args> . -n -R -I
+
 command! -nargs=1 Gem5Build AsyncRun scons build/ARM/gem5.<args> -j4 EXTRAS=../gem5-obj 
 
 set wildignore+=/arm/projectscratch/pd/pj00617/users/josmar02/gem5/build
 set wildignore+=/arm/projectscratch/pd/pj00617/users/josmar02/build
-
-"disable bells
-set noeb
-set vb t_vb=
-
-"gvim resets the visual bell at times when initializing the gui"
-"Let us make sure the visual bell is off"
-if has("gui_running")
-    autocmd GUIEnter * set vb t_vb=
-endif
 
 "check if this is a vimdiff, if so enable setlist to be able to see tabs and line ends"
 if &diff
