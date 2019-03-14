@@ -88,3 +88,9 @@ if &diff
    set list
    set noro
 endif
+
+"show white spaces at the end of the input line"
+highlight RedundantSpaces ctermbg=red guibg=red 
+match RedundantSpaces /\s\+$/
+
+set noexpandtab
